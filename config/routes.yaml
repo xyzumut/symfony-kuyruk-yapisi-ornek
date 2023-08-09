@@ -3,3 +3,7 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+run: 
+    path: /run/{text}
+    methods: GET
+    controller: App\Controller\RunController::run

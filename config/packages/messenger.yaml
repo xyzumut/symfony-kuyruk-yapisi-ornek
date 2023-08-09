@@ -12,6 +12,14 @@ framework:
                 retry_strategy:
                     max_retries: 3
                     multiplier: 2
+            async_umut:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: kuyruk_umut_1
+            async_umut_2:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: kuyruk_umut_2
             failed: 'doctrine://default?queue_name=failed'
             # sync: 'sync://'
 
@@ -19,6 +27,8 @@ framework:
             Symfony\Component\Mailer\Messenger\SendEmailMessage: async
             Symfony\Component\Notifier\Message\ChatMessage: async
             Symfony\Component\Notifier\Message\SmsMessage: async
+            App\Message\MyMessage: async_umut
+            App\Message\MyMessage_2: async_umut_2
 
             # Route your messages to the transports
             # 'App\Message\YourMessage': async
